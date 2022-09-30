@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://kit.fontawesome.com/b0fb0cac77.js" crossorigin="anonymous"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="chart.js"></script>
+    <script src="xuly.js"></script>
+    <script src="jquery.js"></script>
+    
+    <link rel="stylesheet" href="stylesheets/home.css">
+    <link rel="stylesheet" href="stylesheets/devices.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="images/logo1.png" alt="">
+                </span>
+                <div class="text logo-text">
+                    <span class="name">Smart</span>
+                    <span class="profession">Home</span>
+                </div>
+            </div>
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+        <div class="menu-bar">
+            <div class="menu">
+                <li class="search-box">
+                    <i class='bx bx-search icon'></i>
+                    <input type="text" placeholder="Search...">
+                </li>
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="/">
+                            <i class='bx bx-home-alt icon'></i>
+                            <span class="text nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="/devices">
+                            <i class='bx bx-devices icon'></i>
+                            <span class="text nav-text">Devices</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="/history">
+                            <i class='bx bx-history icon'></i>
+                            <span class="text nav-text">History</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottom-content">
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+            </div>
+        </div>
+    </nav>
+    <section class="devices">
+        <div class="text">Devices</div>
+        <div class="wrap">
+            <div class="btn">
+                <div class="air-condition">
+                    <h3>
+                        <img class="conditioner-control-icon" style="padding:10px 10px;" src="images/Heater.png" alt="">
+                        <span class="title-center" style="font-size: 25px;">AirCondition Control</span>
+                    </h3>      
+                    <div class="Fan-condition"></div>                
+                </div>
+                <div class="control-devices">
+                    <h3>ControlPanel</h3>
+                    <div  id="checkbox-container" class="gird-btn">
+                        <div class="card-btn">
+                            <div>
+                                <h3 id="state-btn11">Off</h3>     
+                            </div>      
+                            <label class="btn-control">
+                                <input type="checkbox" onclick="light()" id="light" >
+                                <span class="slider round"></span>
+                            </label>
+                            <img class="" style="width:54px; height:50px; left:8px; position: relative" src="images/heroicons-outline_light-bulb.png" alt="">
+                            <h3 class="name-devi">Lights</h3>
+                        </div>
+                        <div class="card-btn">
+                            <h3 id="state-btn2">Off</h3>
+                            <label class="btn-control">
+                                <input type="checkbox" onclick="pump()" id="pump" >
+                                <span class="slider round"></span>
+                            </label>
+                            <img class="" style="width:45px; height:40px; left:8px; position: relative" src="images/iconoir_air-conditioner.png" alt="">
+                            <h3 class="name-devi">airCondition</h3>
+                        </div>
+                        <div class="card-btn">
+                            <h3 id="state-btn3">Off</h3>
+                            <label class="btn-control">
+                                <input type="checkbox" onclick="fan()" id="fan">
+                                <span class="slider round"></span>
+                            </label>
+                            <img class="" style="width:50px; height:50px; left:8px; position: relative" src="images/fan.png" alt="">
+                            <h3 class="name-devi">Fan</h3>
+
+                        </div>
+                        <div class="card-btn">
+                            <h3 id="state-btn4">Off</h3>
+                            <label class="btn-control">
+                                <input type="checkbox" onclick="heater()" id="heater">
+                                <span class="slider round"></span>
+                            </label> 
+                            <img class="" style="width:54px; height:50px; left:8px; position: relative" src="images/carbon_temperature-celsius.png" alt="">
+                            <h3 class="name-devi">Heater</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="camera">
+                <h3>Camera</h3>
+
+                <div class="card-camera">
+                        <h3>Cam 1</h3>
+                        <i class="fa-solid fa-camera"></i>
+                    </div>
+                    <div class="card-camera">
+                        <h3>Cam 2</h3>
+                        <i class="fa-solid fa-camera"></i>     
+                    </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const body = document.querySelector('body'),
+            sidebar = body.querySelector('nav'),
+            toggle = body.querySelector(".toggle"),
+            searchBtn = body.querySelector(".search-box"),
+            modeSwitch = body.querySelector(".toggle-switch"),
+            modeText = body.querySelector(".mode-text");
+        toggle.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+        })
+        searchBtn.addEventListener("click", () => {
+            sidebar.classList.remove("close");
+        })
+        modeSwitch.addEventListener("click", () => {
+            body.classList.toggle("dark");
+            if (body.classList.contains("dark")) {
+                modeText.innerText = "Light mode";
+            } else {
+                modeText.innerText = "Dark mode";
+            }
+        });
+        //
+        socket.on("server-send-humi_graph", function (data) {
+            chart.series[0].setData(data);
+        });
+    
+        socket.on("server-send-temp_graph", function (data) {
+            chart.series[1].setData(data);
+        });
+    
+        socket.on("server-send-date_graph", function (data) {
+            chart.xAxis[0].setCategories(data);
+        });
+    
+        // ------------- RTC ------------
+        var timeDisplay = document.getElementById("time");
+    
+        function refreshTime() {
+            var dateString = new Date().toLocaleString("en-US", { timeZone: "Asia/Jakarta" });
+            var formattedString = dateString.replace(", ", " - ");
+            timeDisplay.innerHTML = formattedString;
+        }
+        setInterval(refreshTime, 1000);
+        //----rtc-----
+        var formValues = JSON.parse(localStorage.getItem('formValues')) || {};
+        var $checkboxes = $("#checkbox-container :checkbox");
+        var $button = $("#checkbox-container button");
+
+        function allChecked() {
+            return $checkboxes.length === $checkboxes.filter(":checked").length;
+        }
+
+        function updateButtonStatus() {
+            $button.text(allChecked() ? "Uncheck all" : "Check all");
+        }
+
+        function handleButtonClick() {
+            $checkboxes.prop("checked", allChecked() ? false : true)
+        }
+
+        function updateStorage() {
+            $checkboxes.each(function () {
+                formValues[this.id] = this.checked;
+            });
+
+            formValues["buttonText"] = $button.text();
+            localStorage.setItem("formValues", JSON.stringify(formValues));
+        }
+        
+        $button.on("click", function () {
+            handleButtonClick();
+            updateButtonStatus();
+            updateStorage();
+        });
+
+        $checkboxes.on("change", function () {
+            updateButtonStatus();
+            updateStorage();
+        });
+
+        // On page load
+        $.each(formValues, function (key, value) {
+            $("#" + key).prop('checked', value);
+        });
+        $button.text(formValues["buttonText"]);
+
+        // state 
+    </script>
+</body>
+
+</html>

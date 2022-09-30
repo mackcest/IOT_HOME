@@ -1,0 +1,28 @@
+{
+  "name": "iot",
+  "version": "1.0.0",
+  "description": "iot_mackcest",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "iot_mackcest"
+  },
+  "keywords": [
+    "iot_mackcest"
+  ],
+  "author": "mackcest",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "mqtt": "^4.3.6",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.15",
+    "socket.io": "^4.4.1"
+  }
+}

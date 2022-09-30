@@ -1,0 +1,191 @@
+.devices {
+  position: absolute;
+  top: 0;
+  top: 0;
+  left: 250px;
+  height: 100vh;
+  width: calc(100% - 250px);
+  background-color: var(--body-color);
+  transition: var(--tran-05);
+}
+.devices .text {
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--text-color);
+  padding: 12px 60px;
+  border-bottom: 1px solid;
+  box-shadow: 0px 2px 0 0px #707070;
+}
+
+.sidebar.close ~ .devices {
+  left: 90px;
+  height: 100vh;
+  width: calc(100% - 90px);
+}
+body.dark .devices .text {
+  color: var(--text-color);
+}
+
+/*---------------------- */
+
+.wrap {
+  display: flex;
+  flex-direction: row;
+  height: calc(100% - 70px);
+  min-width: 600px;
+}
+.wrap h3 {
+  color: var(--text-color);
+}
+.btn {
+  width: 60%;
+  margin: 10px;
+  min-width: 600px;
+}
+.camera {
+  width: 40%;
+  margin: 20px 10px;
+  height: calc(100% - 70px);
+  border-radius: 25px;
+  padding: 10px;
+  box-shadow: 0 0rem 2rem #4b565f3f;
+}
+.air-condition {
+  background-image: url(../images/Air-Coditioner-Section.png);
+  background-repeat: no-repeat;
+  background-size: 68% 100%;
+  background-position: center 30px;
+  margin: 10px;
+  height: 50%;
+  border-radius: 25px;
+  padding: 10px;
+  box-shadow: 0 0rem 2rem #4b565f3f;
+  
+}
+.control-devices {
+  margin: 20px 10px 0px;
+  height: calc(100% - 70px - 50%);
+  border-radius: 25px;
+  padding: 10px;
+  box-shadow: 0 0rem 2rem #4b565f3f;
+
+}
+.gird-btn {
+  padding: 10px 10px 0px 10px;
+  display: grid;
+  column-gap: 10px;
+  row-gap: 10px;
+  grid-template-columns: auto auto;
+  grid-template-rows: 110px 110px;
+}
+.card-btn {
+  position: relative;
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: 60px auto;
+  gap: 10px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 25px;
+  box-shadow: 0 0rem 2rem #4b565f3f;
+}
+.name-devi{
+  position: absolute;
+  right: 16px;
+  bottom: 8px;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-style: italic;
+}
+/* swith */
+.btn-control {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 22px;
+  right: 16px;
+  top:8px;
+}
+
+.btn-control input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  right: 30px;
+  bottom: 2px;
+  border-radius: 50%;
+  background-color: #E4E9F7;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #46d123;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #46d123;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(28px);
+  -ms-transform: translateX(28px);
+  transform: translateX(28px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 20px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/* end-btn-control */
+.gird-camera {
+  /* padding: 10px; */
+}
+
+.card-camera {
+  height: calc((100% - 70px) / 2);
+  background-color: rgba(255, 255, 255, 0.226);
+  margin: 10px 0px;
+  padding: 10px;
+  border-radius: 25px;
+  box-shadow: 0 0rem 2rem #4b565f3f;
+}
+
+.card-camera > i {
+  color: rgba(236, 82, 82, 0.692);
+  position: relative;
+  right: 50%;
+  left: 50%;
+  top: 35%;
+  font-size: 30px;
+}
+
+.title-center {
+  position: relative;
+  top: -25px;
+  /* padding: 10px; */
+}
